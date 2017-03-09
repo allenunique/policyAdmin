@@ -57,7 +57,12 @@
             <mvc:mapping path="/*"/>
             <bean class="com.allen.interceptor.TokenInterceptor"/>
         </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.allen.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
     </mvc:interceptors>
+
     <context:component-scan base-package="com.allen.*"/>
 
 

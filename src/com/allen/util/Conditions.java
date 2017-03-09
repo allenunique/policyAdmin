@@ -10,6 +10,11 @@ public class Conditions {
     private String center;
     private String bigCenter;
 
+    private String userName;
+    private String contact;
+    private String classify_one;
+    private String status;
+
     public String getStartTime() {
         return startTime;
     }
@@ -50,6 +55,38 @@ public class Conditions {
         this.bigCenter = bigCenter;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getClassify_one() {
+        return classify_one;
+    }
+
+    public void setClassify_one(String classify_one) {
+        this.classify_one = classify_one;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Conditions{" +
@@ -58,6 +95,10 @@ public class Conditions {
                 ", dept='" + dept + '\'' +
                 ", center='" + center + '\'' +
                 ", bigCenter='" + bigCenter + '\'' +
+                ", userName='" + userName + '\'' +
+                ", contact='" + contact + '\'' +
+                ", classify_one='" + classify_one + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

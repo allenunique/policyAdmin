@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.allen.entity.telMessage">
+    <class name="Person" table="t_person" dynamic-update="true">
+        <id name="id" column="personId">
+            <generator class="native"/>
+        </id>
+        <property name="name" column="personName"/>
+        <property name="crm" column="crm"/>
+        <property name="tel" column="telNum"/>
+        <set name="telMessages">
+            <key column="personId"/>
+            <one-to-many class="TelMessage"/>
+        </set>
+        <many-to-one name="dept" column="dept_Id" class="com.allen.entity.Dept"/>
+    </class>
+</hibernate-mapping>

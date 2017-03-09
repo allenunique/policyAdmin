@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.allen.entity.tousu">
+    <class name="com.allen.entity.tousu.Order" table="t_order" dynamic-update="true">
+        <id name="orderId" column="orderId">
+            <generator class="native"/>
+        </id>
+        <property name="status" column="status"/>
+        <component name="orderMessage1">
+            <property name="createOrderTime"/>
+            <property name="orderFrom"/>
+            <property name="orderType"/>
+            <property name="danger"/>
+            <property name="classify_one"/>
+            <property name="classify_two"/>
+            <property name="classify_three"/>
+            <property name="userName"/>
+            <property name="tousuren"/>
+            <property name="contact"/>
+            <property name="eventDetail"/>
+            <property name="fatherUser"/>
+            <property name="firstContact"/>
+            <property name="beitousuren"/>
+            <many-to-one name="user" column="_user" class="com.allen.entity.User"/>
+
+        </component>
+
+        <component name="orderMessage2">
+            <property name="timeLimit"/>
+            <property name="timeAll"/>
+            <property name="chuliren"/>
+            <property name="result"/>
+        </component>
+
+        <component name="orderMessage3">
+            <property name="confirm"/>
+            <property name="isclose"/>
+            <property name="realReason1"/>
+            <property name="realReason2"/>
+            <property name="judge"/>
+            <property name="_level"/>
+            <property name="isrepeat"/>
+            <property name="aBP"/>
+            <property name="recordPerson"/>
+        </component>
+
+    </class>
+</hibernate-mapping>

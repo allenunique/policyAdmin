@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.allen.entity">
+    <class name="BigCenter" table="t_bigCenter">
+        <id name="bigCenterId" column="bigCenterId">
+            <generator class="native"/>
+        </id>
+        <property name="bigCenterName"/>
+        <set name="centers" lazy="false">
+            <key column="bigCenter_Id"/>
+            <one-to-many class="Center"/>
+        </set>
+    </class>
+</hibernate-mapping>

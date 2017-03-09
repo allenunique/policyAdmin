@@ -38,8 +38,8 @@ import java.util.Properties;
  *
  */
 @Controller
-@RequestMapping(value="/NpcOrder")
-public class NpcOrderAction {
+@RequestMapping(value="/order")
+public class OrderAction {
 
     private OrderService orderService;
     private UserService userService;
@@ -54,7 +54,7 @@ public class NpcOrderAction {
     }
     static Properties classify;
     static{
-        InputStream inputStream1 = NpcOrderAction.class.getResourceAsStream("/classify.properties");
+        InputStream inputStream1 = OrderAction.class.getResourceAsStream("/classify.properties");
         classify = new Properties();
         try {
             InputStreamReader ir1 = new InputStreamReader(inputStream1, "UTF-8");
@@ -67,7 +67,7 @@ public class NpcOrderAction {
 
     @RequestMapping("/addTask")
     public String addTask() {
-        return "/Npc/addTask.jsp";
+        return "/tousu/Npc/addTask.jsp";
     }
 
     @RequestMapping("/insertOrder")
@@ -121,9 +121,9 @@ public class NpcOrderAction {
         session.setAttribute("conditions",conditions);
         User user = (User) session.getAttribute("user");
         if("Tasker".equals(user.getType()))
-        return "/tasker/showTasks.jsp";
+        return "/tousu/tasker/showTasks.jsp";
         else
-        return "/Npc/showTasks.jsp";
+        return "/tousu/Npc/showTasks.jsp";
     }
 
     @RequestMapping("/showDetail")

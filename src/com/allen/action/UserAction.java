@@ -55,7 +55,7 @@ public class UserAction {
     public String viewUpdate(HttpSession httpSession,Model model) {
         User user = (User)httpSession.getAttribute("user");
         model.addAttribute("user",user);
-        return "/public/viewUpdate.jsp";
+        return "/tousu/viewUpdate.jsp";
     }
     @RequestMapping(value="/updatePass")
     public String updatePass(String mpass,String newpass,HttpSession httpSession,Model model){

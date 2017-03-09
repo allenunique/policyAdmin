@@ -69,38 +69,4 @@ public class SelectAction {
            }
            return depts;
     }
-
-
-
-
-//    @RequestMapping("show")
-//    public String showSelect(Model model) {
-//
-//        List<String> bigCenter = new ArrayList<>();
-//        List<List<String>> center = new ArrayList<>();
-//        List<List<String>> dept = new ArrayList<>();
-//
-//        List<BigCenter> bigCenters = bigCenterService.getBigCenters();
-//        for (BigCenter bigCenterT : bigCenters) {
-//            bigCenter.add(bigCenterT.getBigCenterName());
-//            List<Center> centers = centerService.getCentersByBigCenterName(bigCenterT.getBigCenterName());
-//            List<String> centerList = new ArrayList<>();
-//            for (Center centerT : centers) {
-//                centerList.add(centerT.getCenterName());
-//                List<Dept> depts = deptService.getDeptsByCenterName(centerT.getCenterName());
-//                List<String> deptList = new ArrayList<>();
-//                for (Dept deptT : depts) {
-//                    deptList.add(deptT.getDeptName());
-//                }
-//                dept.add(deptList);
-//            }
-//            center.add(centerList);
-//        }
-//        model.addAttribute("bigCenterList",bigCenter);
-//        model.addAttribute("centerList",center);
-//        model.addAttribute("deptList",dept);
-//        return "/testSelect.jsp";
-//    }
-
-
 }

@@ -110,53 +110,6 @@ public class ExcelRunnable implements Runnable {
         this.centerTelMessage = centerTelMessage;
     }
 
-
-//    public ExcelRunnable(List<TelMessage> telMessages,List<Object> countTelMessageByDept,
-//                         String directory,String fileName,boolean append) {
-//        this();
-//        this.directory = directory;
-//        this.fileName = fileName;
-//        this.append = append;
-//        List<List<Object>> temp = new LinkedList<>();
-//        temp.add(countTelMessageByDept);
-//        this.countTelMessageByDept = temp;
-//
-//        List<Object> object = null;
-//        objects = new LinkedList<>();
-//        for (TelMessage telMessage : telMessages) {
-//            object = new LinkedList<>();
-//            object.add(telMessage.getDate());
-//            object.add(telMessage.getPerson().getDept().getDeptName());
-//            object.add(telMessage.getPerson().getName());
-//            object.add(telMessage.getPerson().getCrm());
-//            object.add(telMessage.getTelNum());
-//
-//            object.add(telMessage.getCountAll());
-//            object.add(telMessage.getAllTime());
-//
-//            object.add(telMessage.getCountOutAll());
-//            object.add(telMessage.getOutAllTime());
-//            object.add(telMessage.getCount_1out());
-//            object.add(telMessage.get_1outTime());
-//            object.add(telMessage.getCount$1out());
-//            object.add(telMessage.get$1outTime());
-//            object.add(telMessage.getCount$3out());
-//            object.add(telMessage.get$3outTime());
-//
-//            object.add(telMessage.getCountInAll());
-//            object.add(telMessage.getInAllTime());
-//            object.add(telMessage.getCount_1in());
-//            object.add(telMessage.get_1inTime());
-//            object.add(telMessage.getCount$1in());
-//            object.add(telMessage.get$1inTime());
-//            object.add(telMessage.getCount$3in());
-//            object.add(telMessage.get$3inTime());
-//            objects.add(object);
-//        }
-//
-//
-//    }
-
     @Override
     public void run() {
         try {

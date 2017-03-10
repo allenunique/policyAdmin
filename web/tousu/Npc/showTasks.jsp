@@ -21,36 +21,68 @@
     <script src="${pageContext.request.contextPath }/js/pintuer.js"></script>
     <script src="${pageContext.request.contextPath }/js/laydate.js"></script>
     <script type="text/javascript">
-        $(document).ready(function(){
-
-            $(".cascade_drop_down").change(
-                    function () {
-                        var name = $(this).attr("name") + "_next";
-                        var next = $("#" + name).val();
-
-                        if (next == null || next == '') {
-                            return;
-                        }
-
-                        $("#" + next).empty();
-                        $.ajax({
-                            type:'post',
-                            url:'../config/' + $(this).val() + '.txt',
-                            data:'name=' + name + '&val=' + $(this).val(),
-                            dataType:'text',
-
-                            success:function(msg){
-                                ops = msg.split("\n");
-                                for (i = 0; i < ops.length; i++) {
-                                    $("#" + next).append(ops[i]);
-                                }
-                            },
-                            error:function(){
-                                alert("failed.");
-                            }
-                        });
-                    });
+        $(function () {
+            $.ajax({
+                type: "post",
+                url: "${ctx}/select/getBigCenter.action",
+                success: function (data) {
+                    var myobj=eval(data);
+                    for (var i = 0; i < myobj.length; i++) {
+                        $('#bigCenter').append("<option value='" + myobj[i].bigCenterName + "' >" + myobj[i].bigCenterName + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载大中心失败");
+                }
+            });
         });
+
+        /*加载中心下拉选*/
+        function getCenter() {
+            var id = $("#bigCenter").val();
+            $("#center").empty();
+            $("#dept").empty();
+            $.ajax({
+                type: "post",
+                url: "${ctx}/select/getCenter.action",
+                data: {"bigCenterName": id},
+                success: function (data) {
+                    var myobj=eval(data);
+                    $('#center').append("<option value='' selected='selected' >" + '---中心---' + "</option>");
+                    $('#dept').append("<option value='' selected='selected' >" + '---部门---' + "</option>");
+                    for (var i = 0; i < myobj.length; i++) {
+
+                        $('#center').append("<option value='" + myobj[i].centerName + "' >" + myobj[i].centerName + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载中心失败");
+                }
+            });
+        };
+        /*加载部门下拉选*/
+        function getDept() {
+            var id = $("#center").val();
+            $("#dept").empty();
+            //$("#area_code").empty();
+            $.ajax({
+                type: "post",
+                url: "${ctx}/select/getDept.action",
+                data: {"centerName": id},
+                success: function (data) {
+                    var myobj=eval(data);
+                    $('#dept').append("<option value='' selected='selected' >" + '---部门---' + "</option>");
+                    //$('#area_code').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                    for (var i = 0; i < myobj.length; i++) {
+
+                        $('#dept').append("<option value='" + myobj[i].deptName + "' >" + myobj[i].deptName + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载部门失败");
+                }
+            });
+        };
     </script>
     <style type="text/css">
         .done{ background-color: #aeecff }
@@ -74,8 +106,8 @@
             <ul class="search">
                 <li>
                     <div>
-                        <input class="laydate-icon" id="date"  name = "time" style="height: 35px;margin-right: 10px" placeholder="请选择开始日期">
-                        <input class="laydate-icon" id="dateEnd"  name = "endTime" style="height: 35px;margin-right: 10px" placeholder="请选择开始日期">
+                        <input class="laydate-icon" id="date"  name = "startTime" style="height: 35px;margin-right: 10px" placeholder="请选择开始日期">
+                        <input class="laydate-icon" id="dateEnd"  name = "endTime" style="height: 35px;margin-right: 10px" placeholder="请选择结束日期">
                     </div>
                 </li>
                 <hr/>
@@ -86,16 +118,8 @@
                 </li>
                 <hr/>
                 <li>
-                    <input type="hidden" id="bigCenter_next" name="bigCenter_next" value="center">
-                    <select  id="bigCenter" name="bigCenter" class="cascade_drop_down">
-                        <option value ="">===请选择大中心===</option>
-                        <option value ="kefu">客服中心</option>
-                        <option value ="shangwuzhongxin">商务中心</option>
-                        <option value ="qudao">渠道</option>
-                        <option value ="qita">其他</option>
-                    </select>
-                    <select id="center" name="center" class="cascade_drop_down">
-                    </select>
+                    <select id='bigCenter'name = "bigCenter" onchange="getCenter()"><option value="">---大中心---</option></select>
+                    <select id='center'name = "center"><option value="">---中心---</option></select>
                 </li>
                 <hr/>
                 <li>

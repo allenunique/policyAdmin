@@ -42,7 +42,7 @@
             <ul class="search">
                 <li>
                     <div>
-                        <input class="laydate-icon" id="date"  name = "time" style="height: 35px;margin-right: 10px" placeholder="请选择日期节点">
+                        <input class="laydate-icon" id="date"  name = "startTime" style="height: 35px;margin-right: 10px" placeholder="请选择日期节点">
                         <input type="text" name = "userName" style="height: 35px;margin-right: 10px" placeholder="请输入查找用户名">
                     </div>
                 </li>

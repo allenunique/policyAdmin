@@ -1,0 +1,14 @@
+<option value ="" selected = "selected" disabled="true">===请选择===</option>
+<option value ="s_6_1">销售误导/欺诈</option>
+<option value ="s_6_2">骚扰电话</option>
+<option value ="s_6_3">过度承诺</option>
+<option value ="s_6_4">恶意威胁</option>
+<option value ="s_6_5">礼品未兑现</option>
+<option value ="s_6_6">辱骂客户</option>
+<option value ="s_6_7">提供虚假信息</option>
+<option value ="s_6_8">泄露客户资料/信息</option>
+<option value ="s_6_9">私自操作</option>
+<option value ="s_6_10">散播言论</option>
+<option value ="s_6_11">泄漏文件</option>
+<option value ="s_6_12">接受采访</option>
+<option value ="s_6_13">引起起诉</option>

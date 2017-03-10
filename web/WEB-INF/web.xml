@@ -45,6 +45,6 @@
          <location>/error.html</location>
      </error-page>-->
     <welcome-file-list>
-        <welcome-file>/public/index.jsp</welcome-file>
+        <welcome-file>/login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

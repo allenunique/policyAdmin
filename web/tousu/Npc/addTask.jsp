@@ -27,7 +27,7 @@
                   $("#" + next).empty();
                   $.ajax({
                     type:'post',
-                    url:'../config/' + $(this).val() + '.txt',
+                    url:'${ctx}/tousu/config/' + $(this).val() + '.txt',
                     data:'name=' + name + '&val=' + $(this).val(),
                     dataType:'text',
 
@@ -44,7 +44,70 @@
                 });
 
       });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "post",
+                url: "${ctx}/select/getBigCenter.action",
+                success: function (data) {
+                    var myobj=eval(data);
+                    for (var i = 0; i < myobj.length; i++) {
+                        $('#bigCenter').append("<option value='" + myobj[i].bigCenterName + "' >" + myobj[i].bigCenterName + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载大中心失败");
+                }
+            });
+        });
 
+        /*加载中心下拉选*/
+        function getCenter() {
+            var id = $("#bigCenter").val();
+            $("#center").empty();
+            $("#dept").empty();
+            $.ajax({
+                type: "post",
+                url: "${ctx}/select/getCenter.action",
+                data: {"bigCenterName": id},
+                success: function (data) {
+                    var myobj=eval(data);
+                    $('#center').append("<option value='' selected='selected' >" + '---中心---' + "</option>");
+                    $('#dept').append("<option value='' selected='selected' >" + '---部门---' + "</option>");
+                    for (var i = 0; i < myobj.length; i++) {
+
+                        $('#center').append("<option value='" + myobj[i].centerName + "' >" + myobj[i].centerName + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载中心失败");
+                }
+            });
+        };
+        /*加载部门下拉选*/
+        function getDept() {
+            var id = $("#center").val();
+            $("#dept").empty();
+            //$("#area_code").empty();
+            $.ajax({
+                type: "post",
+                url: "${ctx}/select/getDept.action",
+                data: {"centerName": id},
+                success: function (data) {
+                    var myobj=eval(data);
+                    $('#dept').append("<option value='' selected='selected' >" + '---部门---' + "</option>");
+                    //$('#area_code').append("<option value='' selected='selected' >" + '请选择' + "</option>");
+                    for (var i = 0; i < myobj.length; i++) {
+
+                        $('#dept').append("<option value='" + myobj[i].deptName + "' >" + myobj[i].deptName + "</option>");
+                    }
+                },
+                error: function () {
+                    alert("加载部门失败");
+                }
+            });
+        };
     </script>
     <script type="text/javascript">
 	function check(){
@@ -314,30 +377,19 @@
                         <div class = "info_block">
                             <div class = "info_title">大中心:</div>
                             <div class="info_content">
-                                <input type="hidden" id="dazhongxin_next" name="dazhongxin_next" value="zhongxin">
-
-                                <select  id="dazhongxin" name="dazhongxin" class="cascade_drop_down" required>
-                                    <option value =""  selected = "selected" disabled="true">===请选择===</option>
-                                    <option value ="kefu">客服中心</option>
-                                    <option value ="shangwuzhongxin">商务中心</option>
-                                    <option value ="qudao">渠道</option>
-                                    <option value ="qita">其他</option>
-                                </select>
+                                <select id='bigCenter'name = "bigCenter" onchange="getCenter()"><option value="">---大中心---</option></select>
                             </div>
                         </div>
                         <div class = "info_block">
                             <div class = "info_title">中心:</div>
                             <div class="info_content">
-                                <input type="hidden" id="zhongxin_next" name="zhongxin_next" value="bumen">
-                                <select id="zhongxin" name="zhongxin" class="cascade_drop_down" required>
-                                </select>
+                                <select id='center'name = "center"onchange="getDept()"><option value="">---中心---</option></select>
                             </div>
                         </div>
                         <div class = "info_block">
                             <div class = "info_title">部门:</div>
                             <div class="info_content">
-                                <select  class =  "select" id="bumen" name="user.dept.deptName" class="cascade_drop_down" required>
-                                </select>
+                                <select id='dept' name = "user.dept.deptName"><option value="">---部门---</option></select>
                             </div>
                         </div>
                         <div class = "info_block">

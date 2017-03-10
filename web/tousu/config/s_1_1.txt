@@ -1,0 +1,11 @@
+<option value ="" selected = "selected" disabled="true">===请选择===</option>
+<option value ="推广结果无法展现">推广结果无法展现  </option>
+<option value ="推广展现位置">推广展现位置  </option>
+<option value ="推广结果查找不到">推广结果查找不到   </option>
+<option value ="物料状态开通.暂停">物料状态开通.暂停  </option>
+<option value ="物料删除">物料删除  </option>
+<option value ="物料提交">物料提交  </option>
+<option value ="物料修改">物料修改  </option>
+<option value ="物料拒绝-URL打不开">物料拒绝-URL打不开</option>
+<option value ="物料被拒咨询">物料被拒咨询  </option>
+<option value ="物料显示问题">物料显示问题  </option>

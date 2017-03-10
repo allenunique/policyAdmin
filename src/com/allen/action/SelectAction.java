@@ -66,6 +66,7 @@ public class SelectAction {
            for (Dept dept:depts) {
                dept.setCenter(null);
                dept.setPersons(null);
+               dept.setUser(null);
            }
            return depts;
     }

@@ -16,25 +16,19 @@
         $(document).ready(function(){
 
             $(".cascade_drop_down").change(
+
                     function () {
                         var name = $(this).attr("name") + "_next";
-                        var next = $("#" + name).val();
-
-                        if (next == null || next == '') {
-                            return;
-                        }
-
-                        $("#" + next).empty();
+                        $("#two").empty();
                         $.ajax({
                             type:'post',
-                            url:'../config/' + $(this).val() + '.txt',
+                            url:'${ctx}/tousu/config/' + $(this).val() + '.txt',
                             data:'name=' + name + '&val=' + $(this).val(),
                             dataType:'text',
-
                             success:function(msg){
                                 ops = msg.split("\n");
                                 for (i = 0; i < ops.length; i++) {
-                                    $("#" + next).append(ops[i]);
+                                    $("#two").append(ops[i]);
                                 }
                             },
                             error:function(){
@@ -222,7 +216,6 @@
                     <div class = "info_title">实际投诉原因的一级分类:</div>
                     <div class =  "info_content" style="height: auto" >
                         <%--<textarea  name ="orderMessage3.realReason1" cols="25" rows="5" ></textarea>--%>
-                        <input type="hidden" id="orderMessage3.realReason1_next" name="one_next" value="two">
                         <select id = "one" name = "orderMessage3.realReason1" class="cascade_drop_down">
                             <option value ="" selected = "selected" disabled="true">===请选择===</option>
                             <option value ="c_1">服务问题</option>

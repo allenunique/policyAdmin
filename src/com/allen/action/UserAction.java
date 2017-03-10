@@ -32,11 +32,11 @@ public class UserAction {
 //            System.out.println(sessionUser.getUsername()+"||"+sessionUser.getPassword());
             session.setAttribute("user",sessionUser);
             if("NPC".equals(sessionUser.getType())){
-                return "redirect:tousu/Npc/index.jsp";
+                return "redirect:/public/index.jsp";
             }
 //            ("Tasker".equals(sessionUser.getType()))
             else{
-                return "redirect:tousu/tasker/index.jsp";
+                return "redirect:/tousu/tasker/index.jsp";
             }
 
         }else{

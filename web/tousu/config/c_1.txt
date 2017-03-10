@@ -1,0 +1,8 @@
+<option value ="" selected = "selected" disabled="true">===请选择===</option>
+<option value ="服务态度">服务态度</option>
+<option value ="业务技能">业务技能</option>
+<option value ="联系频次低">联系频次低</option>
+<option value ="服务不规范/不到位">服务不规范/不到位</option>
+<option value ="工作差错">工作差错</option>
+<option value ="服务不及时">服务不及时</option>
+<option value ="客户原因">客户原因</option>

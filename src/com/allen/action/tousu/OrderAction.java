@@ -130,14 +130,14 @@ public class OrderAction {
     public String showDetail(int id ,Model model) {
         Order order = orderService.findById(id);
         model.addAttribute("order", order);
-        return "/public/taskDetail.jsp";
+        return "/tousu/taskDetail.jsp";
     }
 
     @RequestMapping("/deleteTask")
     public String deleteTasks(int id, String currentPage) {
         orderService.deleteOrder(id);
 //        return "/public/info.jsp";
-        return "redirect:/NpcOrder/searchTasks.action?currentPage="+currentPage;
+        return "redirect:/order/searchTasks.action?currentPage="+currentPage;
     }
 
     @RequestMapping("/republishTasks")
@@ -145,14 +145,14 @@ public class OrderAction {
         Order order = orderService.findById(id);
         model.addAttribute("order", order);
         orderService.updateStatus(id,21);
-        return "/Npc/addTask.jsp";
+        return "/tousu/Npc/addTask.jsp";
     }
 
     @RequestMapping("/viewDealTask")
     public String viewDealTask(int id, Model model) {
         Order order = orderService.findById(id);
         model.addAttribute("order", order);
-        return "/public/viewDealTask.jsp";
+        return "/tousu/viewDealTask.jsp";
     }
 
     @RequestMapping("/dealTask")

@@ -64,7 +64,7 @@
     <div class="body-content">
         <c:choose>
             <c:when test="${not empty requestScope.order }">
-                <form method="post" class="form-x" action="${pageContext.request.contextPath }/NpcOrder/insertOrder.action">
+                <form method="post" class="form-x" action="${pageContext.request.contextPath }/order/insertOrder.action">
 
                     <div class = "form-group">
                         <div class = "info_block">
@@ -193,7 +193,7 @@
             </c:when>
 
             <c:otherwise>
-                <form method="post" class="form-x" action="${pageContext.request.contextPath }/NpcOrder/insertOrder.action">
+                <form method="post" class="form-x" action="${pageContext.request.contextPath }/order/insertOrder.action">
 
                     <div class = "form-group">
                         <div class = "info_block">

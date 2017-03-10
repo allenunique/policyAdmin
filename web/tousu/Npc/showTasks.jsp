@@ -20,6 +20,38 @@
     <script src="${pageContext.request.contextPath }/js/jquery.js"></script>
     <script src="${pageContext.request.contextPath }/js/pintuer.js"></script>
     <script src="${pageContext.request.contextPath }/js/laydate.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $(".cascade_drop_down").change(
+                    function () {
+                        var name = $(this).attr("name") + "_next";
+                        var next = $("#" + name).val();
+
+                        if (next == null || next == '') {
+                            return;
+                        }
+
+                        $("#" + next).empty();
+                        $.ajax({
+                            type:'post',
+                            url:'../config/' + $(this).val() + '.txt',
+                            data:'name=' + name + '&val=' + $(this).val(),
+                            dataType:'text',
+
+                            success:function(msg){
+                                ops = msg.split("\n");
+                                for (i = 0; i < ops.length; i++) {
+                                    $("#" + next).append(ops[i]);
+                                }
+                            },
+                            error:function(){
+                                alert("failed.");
+                            }
+                        });
+                    });
+        });
+    </script>
     <style type="text/css">
         .done{ background-color: #aeecff }
         .table-hover > tbody > tr.done:hover > td {background-color:#87e7ff}
@@ -37,33 +69,49 @@
 
 <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 任务管理</strong></div>
-    <form method="post" action="${pageContext.request.contextPath }/order/searchTasks.action?dept=${sessionScope.user.dept.deptName}">
+    <form method="post" action="${pageContext.request.contextPath }/order/searchTasks.action">
         <div class="padding border-bottom">
             <ul class="search">
                 <li>
                     <div>
-                        <input class="laydate-icon" id="date"  name = "time" style="height: 35px;margin-right: 10px" placeholder="请选择日期节点">
-                        <input type="text" name = "userName" style="height: 35px;margin-right: 10px" placeholder="请输入查找用户名">
+                        <input class="laydate-icon" id="date"  name = "time" style="height: 35px;margin-right: 10px" placeholder="请选择开始日期">
+                        <input class="laydate-icon" id="dateEnd"  name = "endTime" style="height: 35px;margin-right: 10px" placeholder="请选择开始日期">
                     </div>
                 </li>
+                <hr/>
                 <li>
+                    <input type="text" name = "userName" style="height: 35px;margin-right: 10px" placeholder="请输入查找用户名">
                     <input type="text" name = "contact" style="height: 35px;margin-right: 10px" placeholder="请输入联系方式">
                     <input type="text" name = "classify_one" style="height: 35px;margin-right: 10px" placeholder="请输入一级分类">
                 </li>
                 <hr/>
-
+                <li>
+                    <input type="hidden" id="bigCenter_next" name="bigCenter_next" value="center">
+                    <select  id="bigCenter" name="bigCenter" class="cascade_drop_down">
+                        <option value ="">===请选择大中心===</option>
+                        <option value ="kefu">客服中心</option>
+                        <option value ="shangwuzhongxin">商务中心</option>
+                        <option value ="qudao">渠道</option>
+                        <option value ="qita">其他</option>
+                    </select>
+                    <select id="center" name="center" class="cascade_drop_down">
+                    </select>
+                </li>
+                <hr/>
                 <li>
                     选择任务状态
                     <select name="status">
-                        <option value="0">待处理</option>
+                        <option value="2">待处理</option>
                         <option value="11" selected>全部任务</option>
-                        <option value="20">超时任务</option>
+                        <option value="0" >已发布，未处理</option>
+                        <option value="20">未处理的超时</option>
+                        <option value="21">已处理的超时</option>
                         <option value="1">已流转完成</option>
                     </select>
                 </li>
                 <hr/>
                 <li>
-                    <button type="submit"  class="button border-green">搜索</button>
+                    <button type="submit"  class="button border-green" onclick="return onemonthtypeChange()">搜索</button>
                 </li>
             </ul>
         </div>
@@ -120,11 +168,34 @@
                                     <div class="button-group">
                                         <a class="button border-green" href = "/order/showDetail.action?id=${order.orderId}">查看</a>
                                     </div>
-
+                                    <div class="button-group">
+                                        <a class="button border-back" href = "/order/republishTasks.action?id=${order.orderId}">重新发布</a>
+                                    </div>
                                 </td>
                             </tr>
                         </c:when>
-                        <c:when test="${order.status == 0}">
+                        <c:when test="${order.status == 21}">
+                            <input type="hidden" value = "${order.orderId}" name = "id">
+                            <tr  class = "timeout">
+                                <td>${order.orderMessage1.createOrderTime }</td>
+                                <td>${order.orderMessage1.orderFrom }</td>
+                                <td>${order.orderMessage1.orderType }</td>
+                                <td>${order.orderMessage1.danger }</td>
+                                <td>${order.orderMessage1.classify_one }</td>
+                                <td>${order.orderMessage1.userName }</td>
+                                <td>${order.orderMessage1.contact }</td>
+                                <td>${order.orderMessage1.tousuren }</td>
+                                <td>${order.orderMessage1.beitousuren }</td>
+
+                                <td>
+                                    <!--<button type="button-group"  class="button border-green">查看</button>-->
+                                    <div class="button-group">
+                                        <a class="button border-green" href = "/order/showDetail.action?id=${order.orderId}">查看</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:when>
+                        <c:when test="${order.status == 2}">
                             <input type="hidden" value = "${order.orderId}" name = "id">
                             <tr  class = "deal">
                                 <td>${order.orderMessage1.createOrderTime }</td>
@@ -160,6 +231,7 @@
                                 <td>${order.orderMessage1.beitousuren }</td>
                                 <td>
                                     <div class="button-group"> <a class="button border-green" href = "/order/showDetail.action?id=${order.orderId}">查看</a> </div>
+                                    <div class="button-group"> <a class="button border-red" href="/order/deleteTask.action?id=${order.orderId}&currentPage=${requestScope.pageBean.currentPage}" onclick="return del()">删除</a> </div>
                                 </td>
                             </tr>
 
@@ -174,7 +246,7 @@
             </c:otherwise>
         </c:choose>
         <tr>
-            <td colspan="10"><div class="pagelist">
+            <td colspan="8"><div class="pagelist">
                 <a href="${pageContext.request.contextPath }/order/searchTasks.action?currentPage=1">首页</a>
                 <a href="${pageContext.request.contextPath }/order/searchTasks.action?currentPage=${requestScope.pageBean.currentPage-1}">上一页</a>
                 <span class="current">第${requestScope.pageBean.currentPage }页 </span>
@@ -182,6 +254,9 @@
                 <a href="${pageContext.request.contextPath }/order/searchTasks.action?currentPage=${requestScope.pageBean.currentPage+1}">下一页</a>
                 <a href="${pageContext.request.contextPath }/order/searchTasks.action?currentPage=${requestScope.pageBean.totalPage}">尾页</a>
             </div></td>
+            <td colspan="2">
+                <a class="button border-blue" href = "${pageContext.request.contextPath }/order/exportData.action">以当前搜索条件导出数据</a>
+            </td>
         </tr>
     </table>
 </div>
@@ -191,7 +266,42 @@
         laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
         laydate({elem: '#date'});//绑定元素
     }();
+    !function(){
+        laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+        laydate({elem:'#dateEnd'});//绑定元素
+    }();
 </script>
 
+<script type="text/javascript">
+
+    function del(){
+        if(confirm("您确定要删除该条记录吗?")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function onemonthtypeChange(){
+        var startDate = $("#date").val();
+        var endDate=$("#dateEnd").val();
+        /*if(startDate==""||startDate==null){
+            alert("请选择开始时间！");
+            return false;
+        }
+        if(endDate==""||endDate==null){
+            alert("请选择结束时间！");
+            return false;
+        }*/
+        if((startDate !=""&&startDate!=null)&&(endDate!=""||endDate!=null)){
+            var startNum = parseInt(startDate.replace(/-/g,''),10);
+            var endNum = parseInt(endDate.replace(/-/g,''),10);
+            if(startNum>endNum){
+                alert("结束时间不能在开始时间之前！");
+                return false;
+            }
+        }
+
+    }
+</script>
 </body>
 </html>

@@ -269,32 +269,4 @@ public class OrderAction {
         return "/public/info.jsp";
     }
 
-    @RequestMapping("/showDownloadFile")
-    @Token(save=true)
-    public String showDownloadFile(HttpSession session,Model model) {
-        String directory = session.getServletContext().getRealPath("/")+"download";
-        File root = new File(directory);
-        File[] fs = root.listFiles();
-        List<String> list = new ArrayList<>();
-        for(int i=0; i<fs.length; i++){
-//			   System.out.println(fs[i].getAbsolutePath());
-//			   System.out.println(fs[i].getName());
-            list.add(fs[i].getName());
-        }
-        model.addAttribute("downList", list);
-        return "/Npc/showDownloadFile.jsp";
-    }
-
-    @RequestMapping("/download")
-    @Token(remove=true)
-    public ResponseEntity<byte[]> download(String fileName,HttpSession session) throws IOException {
-        String directory = session.getServletContext().getRealPath("/")+"download";
-        String dfileName = new String(fileName.getBytes("utf-8"), "utf-8");
-        System.out.println(dfileName);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        headers.setContentDispositionFormData("attachment", dfileName);
-        File file = new File(directory+"/"+dfileName);
-        return new ResponseEntity<>(FileUtils.readFileToByteArray(file), headers, HttpStatus.CREATED);
-    }
 }

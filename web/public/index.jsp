@@ -54,7 +54,7 @@
   </ul>
   <ul style="display:block">
     <li><a href="${pageContext.request.contextPath }/user/viewUpdate.action" target="right"><span class="icon-caret-right"></span>用户管理</a></li>
-    <li><a href="${pageContext.request.contextPath }/#" target="right"><span class="icon-caret-right"></span>下载中心</a></li>
+    <li><a href="${pageContext.request.contextPath }/download/showDownloadFile.action" target="right"><span class="icon-caret-right"></span>下载中心</a></li>
   </ul>
 </div>
 

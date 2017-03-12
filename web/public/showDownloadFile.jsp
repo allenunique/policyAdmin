@@ -28,7 +28,7 @@
         		<c:forEach var="name" items="${requestScope.downList}">
 	  					<tr>
 	  					<td>${name }</td>
-	  					<td><a href = "${pageContext.request.contextPath }/telMessage/download.action?fileName=${name }&token=${token} ">下载</a></td>
+	  					<td><a href = "${pageContext.request.contextPath }/download/download_file.action?fileName=${name }&token=${token} ">下载</a></td>
          				</tr>
         		</c:forEach>
         	</c:when>

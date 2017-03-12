@@ -383,7 +383,7 @@
                         <div class = "info_block">
                             <div class = "info_title">中心:</div>
                             <div class="info_content">
-                                <select id='center'name = "center"onchange="getDept()"><option value="">---中心---</option></select>
+                                <select id='center'name = "center" onchange="getDept()"><option value="">---中心---</option></select>
                             </div>
                         </div>
                         <div class = "info_block">

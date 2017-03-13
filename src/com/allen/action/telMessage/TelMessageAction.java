@@ -130,7 +130,7 @@ public class TelMessageAction {
         Thread threads = new Thread(excelRunnable);
         threads.start();
         model.addAttribute("message", "正在导出，请稍后到下载中心下载");
-        return "public/info.jsp";
+        return "/public/info.jsp";
     }
 
     public List<Object> countTelMessageByDeptTelMessage(String centerName,List<List<Object>> deptTelMessage) {

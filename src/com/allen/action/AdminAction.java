@@ -3,12 +3,15 @@ package com.allen.action;
 import com.allen.entity.BigCenter;
 import com.allen.entity.Center;
 import com.allen.entity.Dept;
+import com.allen.entity.User;
 import com.allen.entity.telMessage.Person;
 import com.allen.service.BigCenterService;
 import com.allen.service.CenterService;
 import com.allen.service.DeptService;
 
+import com.allen.service.UserService;
 import com.allen.service.telMessage.PersonService;
+import com.allen.util.PageBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +34,7 @@ public class AdminAction {
     private CenterService centerService;
     private DeptService deptService;
     private PersonService personService;
+    private UserService userService;
 
     @Resource(name = "personService")
     public void setPersonService(PersonService personService) {
@@ -52,6 +56,10 @@ public class AdminAction {
         this.deptService = deptService;
     }
 
+    @Resource(name = "userService")
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping("queryCenters")
     public String queryCenters(String bigCenter, Model model) {
@@ -270,12 +278,34 @@ public class AdminAction {
         }
         return "redirect:/admin/viewFile.action?judge="+judge;
     }
+
     @RequestMapping("showAddUser")
     public String showAddUser() {
         return "/admin/showAddUser.jsp";
     }
+
     @RequestMapping("addUser")
-    public String addUser() {
+    public String addUser(String dept,String userName,String rpass) {
+        User user = new User();
+        Dept dept1 = deptService.findDeptByName(dept);
+        user.setUsername(userName);
+        user.setPassword(rpass);
+        user.setType("tasker");
+        user.setDept(dept1);
+        userService.createUser(user);
         return "/public/info.jsp";
+    }
+
+    @RequestMapping("showUsers")
+    public String showUsers(Model model,String currentPage) {
+        if(currentPage == null || "".equals(currentPage.trim())){
+            currentPage = "1";
+        }
+        int currPage = Integer.parseInt(currentPage);
+        PageBean<User> pageUser = new PageBean<>();
+        pageUser.setCurrentPage(currPage);
+        userService.pageUser(pageUser);
+        model.addAttribute("pageBean", pageUser);
+        return "/admin/showUsers.jsp";
     }
 }

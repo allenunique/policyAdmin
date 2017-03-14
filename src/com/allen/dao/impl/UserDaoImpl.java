@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by ad on 2017-02-07.
@@ -71,7 +72,12 @@ public class UserDaoImpl implements UserDao {
         int totalCount = scroll.getRowNumber()+1;
         q.setFirstResult((pageBean.getCurrentPage()-1)*pageBean.getPageCount());
         q.setMaxResults(pageBean.getPageCount());
-        pageBean.setPageData(q.list());
-        pageBean.setPageCount(totalCount);
+        List<User> users = q.list();
+        for (User user : users) {
+            user.getDept().getDeptName();
+        }
+        pageBean.setPageData(users);
+        pageBean.setTotalCount(totalCount);
     }
+
 }

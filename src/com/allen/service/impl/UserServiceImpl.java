@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void createUser(User user) {
-
+        userDao.createUser(user);
     }
 
     public User findUserById(int id) {
@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public void pageUser(PageBean<User> pageBean) {
-
+        userDao.pageUser(pageBean);
     }
+
 }

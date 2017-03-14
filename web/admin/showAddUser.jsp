@@ -128,7 +128,7 @@
                 <label>请输入用户密码：</label>
             </div>
             <div class="field">
-                <input type="password" class="input w50" name="newpass" size="50" placeholder="请输入密码" data-validate="required:请输入密码,length#>=5:密码不能小于5位" />
+                <input type="password" class="input w50" name="pass" size="50" placeholder="请输入密码" data-validate="required:请输入密码,length#>=5:密码不能小于5位" />
             </div>
         </div>
         <div class="form-group">
@@ -136,7 +136,7 @@
                 <label>确认密码：</label>
             </div>
             <div class="field">
-                <input type="password" class="input w50" name="renewpass" size="50" placeholder="请再次输入密码" data-validate="required:请再次输入密码,repeat#newpass:两次输入的密码不一致" />
+                <input type="password" class="input w50" name="rpass" size="50" placeholder="请再次输入密码" data-validate="required:请再次输入密码,repeat#pass:两次输入的密码不一致" />
             </div>
         </div>
         <div class="form-group">

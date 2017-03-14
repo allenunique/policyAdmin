@@ -3,6 +3,8 @@ package com.allen.service;
 import com.allen.entity.User;
 import com.allen.util.PageBean;
 
+import java.util.List;
+
 /**
  * Created by ad on 2017-02-10.
  *

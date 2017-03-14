@@ -2,6 +2,8 @@ package com.allen.dao;
 import com.allen.entity.User;
 import com.allen.util.PageBean;
 
+import java.util.List;
+
 /**
  * Created by ad on 2017-02-07.
  *
@@ -18,4 +20,5 @@ public interface UserDao {
     User findUser(User user);
 
     void pageUser(PageBean<User> pageBean);
+
 }

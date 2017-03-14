@@ -45,13 +45,14 @@
     <h2><span class="icon-pencil-square-o"></span>管理</h2>
     <ul style="display:block">
         <li><a href="${pageContext.request.contextPath }/admin/queryCenters.action" target="right"><span class="icon-caret-right"></span>管理中心</a></li>
-        <li><a href="${pageContext.request.contextPath }/admin/queryDepts.action" target="right"><span class="icon-caret-right"></span>管理部门</a></li>
+        <li><a href="${pageContext.request.contextPath }/admin/queryDepts.action" target="right"><span class="icon-caret-right"></span>管理部                                                                                                                                                                                                                                          门</a></li>
         <li><a href="${pageContext.request.contextPath }/admin/queryPersons.action" target="right"><span class="icon-caret-right"></span>管理员工</a></li>
         <li><a href="${pageContext.request.contextPath }/admin/add.action?judge=bigCenter" target="right"><span class="icon-caret-right"></span>添加大中心</a></li>
         <li><a href="${pageContext.request.contextPath }/admin/add.action?judge=center" target="right"><span class="icon-caret-right"></span>添加中心</a></li>
         <li><a href="${pageContext.request.contextPath }/admin/add.action?judge=dept" target="right"><span class="icon-caret-right"></span>添加部门</a></li>
         <li><a href="${pageContext.request.contextPath }/admin/add.action?judge=person" target="right"><span class="icon-caret-right"></span>添加员工</a></li>
         <li><a href="${pageContext.request.contextPath }/admin/showAddUser.action" target="right"><span class="icon-caret-right"></span>添加用户</a></li>
+        <li><a href="${pageContext.request.contextPath }/admin/showUsers.action" target="right"><span class="icon-caret-right"></span>管理用户</a></li>
     </ul>
     <ul style="display:block">
         <li><a href="${pageContext.request.contextPath }/admin/viewFile.action?judge=download" target="right"><span class="icon-caret-right"></span>管理导出文件</a></li>

@@ -27,7 +27,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -87,7 +89,8 @@ public class TelMessageAction {
                 fileName = "Export_File" + conditions.getStartTime() + "_" + conditions.getEndTime() ;
             }
         }else {
-            fileName = "Export_File_ALL";
+            String date = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date());
+            fileName = "Export_File_ALL_"+date;
         }
 
 //        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd_hhmmss");

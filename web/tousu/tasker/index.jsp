@@ -21,7 +21,7 @@
 <body style="background-color:#f2f9fd;">
 <div class="header bg-main">
   <div class="logo margin-big-left fadein-top">
-    <h1><img src="${pageContext.request.contextPath }/img/logo.gif" class="radius-circle rotate-hover" height="50" alt="" /></h1>
+    <h1>投诉流转管理系统</h1>
   </div>
   <div class="head-l">
     <span style='cursor:pointer;color:#FFF;text-decoration: none; margin-right: 20px'>${sessionScope.user.dept.deptName}</span>

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: ad
-  Date: 2017-03-06
-  Time: 16:32
+  Date: 2017-03-14
+  Time: 11:02
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" pageEncoding="utf-8"%>
@@ -86,48 +86,69 @@
 </head>
 <body>
 
-    <div class="panel admin-panel">
-        <div class="panel-head"><strong class="icon-reorder">添加</strong></div>
-        <div><strong>添加</strong></div>
-        <c:choose>
-            <c:when test="${requestScope.judge eq \"bigCenter\"}">
-                <form action="${pageContext.request.contextPath }/admin/addBigCenter.action" method="post">
-                    请输入大中心名称：<input type="text" name ="bigCenterName">
-                    <button type="submit"  class="button border-green">添加</button>
-                </form>
-            </c:when>
-            <c:when test="${requestScope.judge == \"center\"}">
-                <form action="${pageContext.request.contextPath }/admin/addCenter.action" method="post">
-                选择所属大中心：<select id='bigCenter'name = "bigCenter"><option value="">---大中心---</option></select>
-                    <hr/>
-                请输入中心名称：<input type="text" name ="centerName">
-                    <button type="submit"  class="button border-green">添加</button>
-                </form>
-            </c:when>
-            <c:when test="${requestScope.judge == \"dept\"}">
-                <form action="${pageContext.request.contextPath }/admin/addDept.action" method="post">
-                选择所属大中心：<select id='bigCenter'name = "bigCenter" onchange="getCenter()"><option value="">---大中心---</option></select>
-                选择所属中心:<select id='center'name = "center"><option>---中心---</option></select>
-                    <hr/>
-                请输入部门名称：<input type="text" name ="deptName">
-                 <button type="submit"  class="button border-green">添加</button>
-                </form>
-            </c:when>
-            <c:when test="${requestScope.judge == \"person\"}">
-                <form action="${pageContext.request.contextPath }/admin/addPerson.action" method="post">
-                选择所属大中心：<select id='bigCenter'name = "bigCenter" onchange="getCenter()"><option value="">---大中心---</option></select>
-                选择所属中心:<select id='center'name = "center" onchange="getDept()"><option>---中心---</option></select>
-                选择部门: <select id='dept' name = "dept"><option>---部门---</option></select>
-                <hr/>
-                 请输入员工姓名：<input type="text" name ="name">
-                请输入员工电话：<input type="text" name ="tel">
-                请输入员工CRM：<input type="text" name ="crm">
-                 <button type="submit"  class="button border-green">添加</button>
-                </form>
-            </c:when>
+<div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder">添加用户</strong></div>
+    <form method="post" class="form-x" action="${pageContext.request.contextPath }/admin/addUser.action">
+        <div class="form-group">
+            <div class="label">
+                <label>选择所属大中心：</label>
+            </div>
+            <div class="field">
+                <select id='bigCenter'name = "bigCenter" onchange="getCenter()"><option value="">---大中心---</option></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label>选择所属中心：</label>
+            </div>
+            <div class="field">
+                <select id='center'name = "center" onchange="getDept()"><option>---中心---</option></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label>选择所属部门：</label>
+            </div>
+            <div class="field">
+                <select id='dept' name = "dept"><option>---部门---</option></select>
+            </div>
+        </div>
 
-        </c:choose>
-
-    </div>
+        <hr/>
+        <div class="form-group">
+            <div class="label">
+                <label>请输入用户名：</label>
+            </div>
+            <div class="field">
+                <input type="text" class="input w50" name="userName" size="50" placeholder="请输入用户名"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label>请输入用户密码：</label>
+            </div>
+            <div class="field">
+                <input type="password" class="input w50" name="newpass" size="50" placeholder="请输入密码" data-validate="required:请输入密码,length#>=5:密码不能小于5位" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label>确认密码：</label>
+            </div>
+            <div class="field">
+                <input type="password" class="input w50" name="renewpass" size="50" placeholder="请再次输入密码" data-validate="required:请再次输入密码,repeat#newpass:两次输入的密码不一致" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="label">
+                <label></label>
+            </div>
+            <div class="field">
+                <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+            </div>
+        </div>
+        </form>
+</div>
 </body>
 </html>
+

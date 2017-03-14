@@ -26,20 +26,21 @@ public class UserAction {
     }
 
     @RequestMapping(method = RequestMethod.POST,value="/login")
-    public String loginMethod(HttpSession session,User user) throws Exception{
+    public String loginMethod(HttpSession session,User user) throws Exception {
         User sessionUser = userService.login(user);
         if (sessionUser != null) {
 //            System.out.println(sessionUser.getUsername()+"||"+sessionUser.getPassword());
-            session.setAttribute("user",sessionUser);
-            if("NPC".equals(sessionUser.getType())){
+            session.setAttribute("user", sessionUser);
+            if ("NPC".equals(sessionUser.getType())) {
                 return "redirect:/public/index.jsp";
-            }
-//            ("Tasker".equals(sessionUser.getType()))
-            else{
+            } else if ("Tasker".equals(sessionUser.getType())) {
                 return "redirect:/tousu/tasker/index.jsp";
-            }
+            } else if ("admin".equals(sessionUser.getType())) {
+                return "redirect:/admin/admin_index.jsp";
+            }else
+                return "redirect:/login.jsp";
 
-        }else{
+        } else {
             return "redirect:/login.jsp";
         }
     }

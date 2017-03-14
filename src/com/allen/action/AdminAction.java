@@ -270,4 +270,12 @@ public class AdminAction {
         }
         return "redirect:/admin/viewFile.action?judge="+judge;
     }
+    @RequestMapping("showAddUser")
+    public String showAddUser() {
+        return "/admin/showAddUser.jsp";
+    }
+    @RequestMapping("addUser")
+    public String addUser() {
+        return "/public/info.jsp";
+    }
 }

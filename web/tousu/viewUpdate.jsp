@@ -68,7 +68,7 @@
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label for=>新密码：</label>
+                    <label >新密码：</label>
                 </div>
                 <div class="field">
                     <input type="password" class="input w50" name="newpass" size="50" placeholder="请输入新密码" data-validate="required:请输入新密码,length#>=5:新密码不能小于5位" />
@@ -76,7 +76,7 @@
             </div>
             <div class="form-group">
                 <div class="label">
-                    <label for=>确认新密码：</label>
+                    <label >确认新密码：</label>
                 </div>
                 <div class="field">
                     <input type="password" class="input w50" name="renewpass" size="50" placeholder="请再次输入新密码" data-validate="required:请再次输入新密码,repeat#newpass:两次输入的密码不一致" />

@@ -51,6 +51,7 @@
         <li><a href="${pageContext.request.contextPath }/admin/add.action?judge=center" target="right"><span class="icon-caret-right"></span>添加中心</a></li>
         <li><a href="${pageContext.request.contextPath }/admin/add.action?judge=dept" target="right"><span class="icon-caret-right"></span>添加部门</a></li>
         <li><a href="${pageContext.request.contextPath }/admin/add.action?judge=person" target="right"><span class="icon-caret-right"></span>添加员工</a></li>
+        <li><a href="${pageContext.request.contextPath }/admin/showAddUser.action" target="right"><span class="icon-caret-right"></span>添加用户</a></li>
     </ul>
     <ul style="display:block">
         <li><a href="${pageContext.request.contextPath }/admin/viewFile.action?judge=download" target="right"><span class="icon-caret-right"></span>管理导出文件</a></li>

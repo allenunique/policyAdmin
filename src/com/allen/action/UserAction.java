@@ -33,7 +33,7 @@ public class UserAction {
             session.setAttribute("user", sessionUser);
             if ("NPC".equals(sessionUser.getType())) {
                 return "redirect:/public/index.jsp";
-            } else if ("Tasker".equals(sessionUser.getType())) {
+            } else if ("tasker".equals(sessionUser.getType())) {
                 return "redirect:/tousu/tasker/index.jsp";
             } else if ("admin".equals(sessionUser.getType())) {
                 return "redirect:/admin/admin_index.jsp";

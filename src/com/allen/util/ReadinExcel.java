@@ -261,42 +261,44 @@ public class ReadinExcel<T> {
                 String value = getCellValue(cell);
  System.out.println(columnIndex+":"+value);
                 // 3.单元格中的值等于null或等于"" 就放弃整行数据
-                if(value == null || "".equals(value)){
-                    judge = false;
-                    break;
-                }
+//                if(value == null || "".equals(value)){
+//                    judge = false;
+//                    break;
+//                }
 
                 /*
                  * 测试：查看自定义的title Map集合中定义的Excle标题和实体类中属性对应情况！
                    System.out.println("c:"+columnIndex+"\t"+attribute.get(Integer.valueOf(columnIndex)));
                  */
-                Field field = clazz.getDeclaredField(attribute.get(Integer
-                        .valueOf(columnIndex)));
-                Class<?> fieldType = field.getType();
-                Object agge = null;
-                if (fieldType.isAssignableFrom(int.class)) {
-                    agge = Integer.valueOf(value);
-                } else if (fieldType.isAssignableFrom(Integer.class)) {
-                    agge = Integer.valueOf(value);
-                } else if (fieldType.isAssignableFrom(Double.class)) {
-                    agge = Double.valueOf(value);
-                } else if (fieldType.isAssignableFrom(Float.class)) {
-                    agge = Float.valueOf(value);
-                } else if (fieldType.isAssignableFrom(Long.class)) {
-                    agge = Long.valueOf(value);
-                } else if (fieldType.isAssignableFrom(Date.class)) {
-                        agge = new SimpleDateFormat(format).parse(value);
+                if (value != null && !"".equals(value)) {
+                    Field field = clazz.getDeclaredField(attribute.get(Integer
+                            .valueOf(columnIndex)));
+                    Class<?> fieldType = field.getType();
+                    Object agge = null;
+                    if (fieldType.isAssignableFrom(int.class)) {
+                        agge = Integer.valueOf(value);
+                    } else if (fieldType.isAssignableFrom(Integer.class)) {
+                        agge = Integer.valueOf(value);
+                    } else if (fieldType.isAssignableFrom(Double.class)) {
+                        agge = Double.valueOf(value);
+                    } else if (fieldType.isAssignableFrom(Float.class)) {
+                        agge = Float.valueOf(value);
+                    } else if (fieldType.isAssignableFrom(Long.class)) {
+                        agge = Long.valueOf(value);
+                    } else if (fieldType.isAssignableFrom(Date.class)) {
+                            agge = new SimpleDateFormat(format).parse(value);
 
-                } else if (fieldType.isAssignableFrom(Boolean.class)) {
-                    agge = "Y".equals(value) || "1".equals(value);
-                } else if (fieldType.isAssignableFrom(String.class)) {
-                    agge = value;
+                    } else if (fieldType.isAssignableFrom(Boolean.class)) {
+                        agge = "Y".equals(value) || "1".equals(value);
+                    } else if (fieldType.isAssignableFrom(String.class)) {
+                        agge = value;
+                    }
+                    // 个人感觉char跟byte就不用判断了 用这两个类型的很少如果是从数据库用IDE生成的话就不会出现了
+                    Method method = clazz.getMethod("set"
+                            + toUpperFirstCase(attribute.get(Integer
+                            .valueOf(columnIndex))), fieldType);
+                    method.invoke(obj, agge);
                 }
-                // 个人感觉char跟byte就不用判断了 用这两个类型的很少如果是从数据库用IDE生成的话就不会出现了
-                Method method = clazz.getMethod("set"
-                        + toUpperFirstCase(attribute.get(Integer
-                        .valueOf(columnIndex))), fieldType);
-                method.invoke(obj, agge);
 
             }
             Cell cell = row.getCell(row.getLastCellNum()-1);

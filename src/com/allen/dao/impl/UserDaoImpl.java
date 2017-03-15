@@ -59,7 +59,7 @@ public class UserDaoImpl implements UserDao {
                 .setString(0, user.getUsername())//
                 .setString(1, user.getPassword())//
                 .uniqueResult();
-        if(user_!=null && !"admin".equals(user_.getType())) {
+        if(user_!=null) {
             user_.getDept().getCenter().getBigCenter().getBigCenterName();
         }
          return user_;

@@ -11,6 +11,6 @@
         <property name="username" column="username"/>
         <property name="password" column="password"/>
         <property name="type" column="type"/>
-        <many-to-one name="dept" unique="true" column="deptId" class="Dept" cascade="save-update"/>
+        <many-to-one name="dept" column="deptId" class="Dept" cascade="save-update"/>
     </class>
 </hibernate-mapping>

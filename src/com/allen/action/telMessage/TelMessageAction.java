@@ -234,14 +234,18 @@ public class TelMessageAction {
                 $1outTime = $1outTime.addTime(new Time(telMessage.get$1outTime()));
                 count$3out = count$3out + telMessage.getCount$3out();
                 $3outTime = $3outTime.addTime(new Time(telMessage.get$3outTime()));
-                
+
                 countInAll = countInAll + telMessage.getCountInAll();
+                if(telMessage.getInAllTime()!=null)
                 inAllTime = inAllTime.addTime(new Time(telMessage.getInAllTime()));
                 count_1in = count_1in + telMessage.getCount_1in();
+                if(telMessage.get_1inTime()!=null)
                 _1inTime = _1inTime.addTime(new Time(telMessage.get_1inTime()));
                 count$1in = count$1in + telMessage.getCount$1in();
+                if(telMessage.get$1inTime()!=null)
                 $1inTime = $1inTime.addTime(new Time(telMessage.get$1inTime()));
                 count$3in = count$3in + telMessage.getCount$3in();
+                if(telMessage.get$3inTime()!=null)
                 $3inTime = $3inTime.addTime(new Time(telMessage.get$3inTime()));
 
             }

@@ -116,6 +116,7 @@ public class TelMessageDaoImpl implements TelMessageDao {
         q.setMaxResults(pageBean.getPageCount());
         List<TelMessage>telMessageList = q.list();
         for (TelMessage telMessage :telMessageList) {
+            if(telMessage.getPerson()!=null)
             telMessage.getPerson().getDept().getCenter().getBigCenter().getBigCenterName();
         }
         pageBean.setPageData(telMessageList);

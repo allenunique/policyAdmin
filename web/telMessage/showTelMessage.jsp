@@ -101,7 +101,7 @@
 
                     <hr/>
                     <li>
-                        <select id='bigCenter'name = "bigCenter" onchange="getCenter()"><option value="">---大中心---</option></select>
+                        <select id='bigCenter'name = "bigCenter" onchange="getCenter()" required><option value="">---大中心---</option></select>
                         <select id='center'name = "center"onchange="getDept()"><option value="">---中心---</option></select>
                         <select id='dept' name = "dept"><option value="">---部门---</option></select>
                     </li>

@@ -32,7 +32,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- <error-page>
+     <error-page>
          <exception-type>java.lang.Exception</exception-type>
          <location>/error.html</location>
      </error-page>
@@ -43,7 +43,7 @@
      <error-page>
          <error-code>500</error-code>
          <location>/error.html</location>
-     </error-page>-->
+     </error-page>
     <welcome-file-list>
         <welcome-file>/login.jsp</welcome-file>
     </welcome-file-list>
